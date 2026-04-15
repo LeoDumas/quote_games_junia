@@ -1,0 +1,14 @@
+.btn{
+background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #373737;
+border: 6px solid #4EBEFF;
+box-shadow: 0px 0px 50px #4EBEFF;
+border-radius: 10px;
+position: absolute;
+
+font-family: 'Orbitron';
+font-style: normal;
+font-weight: 400;
+
+
+color: #DEDDD9;
+}
