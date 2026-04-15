@@ -1,0 +1,15 @@
+#burger_icon {
+    cursor: pointer;
+    width: 30px;
+}
+
+.topnav-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+}
+
+div[data-reverse='true'] nav {
+    display: none;
+}
