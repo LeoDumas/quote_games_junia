@@ -7,8 +7,7 @@ function Button({h,w,Answer,txt,link = ""}){
     
     return(
         <button
-        className ="btn"
-        onClick={Answer}  
+        className ="btn" 
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         style = {{
