@@ -1,18 +1,23 @@
 import "./Home.css";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/ButtonAssets/Button";
 import HistoryBoard from "../../components/HistoryBoard/HistoryBoard";
 import QuoteBox from "../../components/QuoteBox/QuoteBox";
+import { loadLeaderboard } from "../../resources/leaderboard/leaderboard";
 
 function Home() {
-  const historyEntries = [
-    { name: "XXXGamerXXX", score: 50129837 },
-    { name: "XXXGamerXXX", score: 41209483 },
-    { name: "XXXGamerXXX", score: 3586598 },
-    { name: "XXXGamerXXX", score: 3419090 },
-    { name: "XXXGamerXXX", score: 3157609 },
-    { name: "XXXGamerXXX", score: 2997910 },
-    { name: "XXXGamerXXX", score: 2272983 },
-  ];
+  const navigate = useNavigate();
+  const [historyEntries, setHistoryEntries] = useState(() => loadLeaderboard());
+
+  useEffect(() => {
+    const refresh = () => setHistoryEntries(loadLeaderboard());
+
+    refresh();
+    window.addEventListener("focus", refresh);
+
+    return () => window.removeEventListener("focus", refresh);
+  }, []);
 
   return (
     <main className="home_container">
@@ -26,7 +31,12 @@ function Home() {
           />
         </div>
 
-        <Button className="home_play_button" variant="blue" txt="> Play <" />
+        <Button
+          className="home_play_button"
+          variant="blue"
+          txt="> Play <"
+          onClick={() => navigate("/game")}
+        />
       </section>
 
       <HistoryBoard entries={historyEntries} />
