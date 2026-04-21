@@ -2,35 +2,34 @@
 
 .box_quote_container {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    width: 95%;
-    max-width: 687px;
-    margin: 60px auto;
+    width: clamp(300px, 88vw, 900px);
+    margin: clamp(10px, 3.2vh, 46px) auto;
 }
 
 .box_quote {
     box-sizing: border-box;
     position: relative;
     width: 100%;
-    min-height: 299px;
+    min-height: clamp(150px, 18vw, 240px);
     background: #373737;
-    border: 5px solid #1c1c1c;
+    border: clamp(3px, 0.35vw, 5px) solid #1c1c1c;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
+    padding: clamp(16px, 2.2vw, 26px) clamp(18px, 4vw, 44px);
 }
 
 .top_quote {
     box-sizing: border-box;
     position: absolute;
-    width: 68px;
-    height: 68px;
+    width: clamp(44px, 6vw, 68px);
+    height: clamp(44px, 6vw, 68px);
     top: 0;
     left: 0;
     transform: translate(-50%, -50%);
     background: #373737;
-    border: 5px solid #1c1c1c;
+    border: clamp(3px, 0.35vw, 5px) solid #1c1c1c;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -39,37 +38,45 @@
 }
 
 .top_quote img {
-    width: 32px;
-    height: 32px;
+    width: clamp(20px, 3vw, 32px);
+    height: clamp(20px, 3vw, 32px);
     user-select: none;
 }
 
 .box_content {
     width: 100%;
-    max-width: 578px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 38px;
+    gap: clamp(12px, 2.1vw, 24px);
 }
 
 .quote_text {
     font-family: "Fira Mono", monospace;
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
-    line-height: 1.2;
+    width: 75%;
+    max-width: none;
+    font-size: clamp(16px, 1.9vw, 44px);
+    line-height: 1.14;
     color: #ffffff;
     margin: 0;
+}
+
+@media (min-width: 1200px) {
+    .quote_text {
+        width: 88%;
+    }
 }
 
 .quote_author {
     font-family: "Fira Mono", monospace;
     font-style: normal;
     font-weight: 700;
-    font-size: 24px;
+    font-size: clamp(16px, 1.8vw, 34px);
     line-height: 1.2;
     color: #ffffff;
     margin: 0;
@@ -77,12 +84,13 @@
 
 @media (max-width: 768px) {
     .box_quote_container {
-        margin: 40px auto;
+        width: min(95vw, 680px);
+        margin: 16px auto;
     }
 
     .box_quote {
-        min-height: 200px;
-        padding: 50px 25px 30px 25px;
+        min-height: clamp(170px, 46vw, 220px);
+        padding: 24px 14px 18px;
     }
 
     .top_quote {
@@ -98,11 +106,12 @@
     }
 
     .quote_text {
-        font-size: 18px;
+        width: 92%;
+        font-size: clamp(15px, 3.7vw, 21px);
     }
 
     .quote_author {
-        font-size: 18px;
+        font-size: clamp(15px, 3.4vw, 19px);
     }
 }
 

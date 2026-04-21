@@ -1,20 +1,22 @@
 .main_not_found {
   width: 100%;
-  min-height: 80vh; 
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem;
+  padding: clamp(16px, 4vw, 32px);
+  box-sizing: border-box;
 }
 
 .not_found_content {
   background: var(--bg);
-  padding: 3rem;
+  padding: clamp(20px, 5vw, 48px);
   border-radius: 12px;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  max-width: 500px;
+  width: min(92vw, 560px);
+  box-sizing: border-box;
 }
 
 .brand_name {
@@ -26,14 +28,14 @@
 }
 
 .error_code {
-  font-size: 6rem;
+  font-size: clamp(3.2rem, 14vw, 6rem);
   margin: 0;
   color: var(--text-h);
   line-height: 1;
 }
 
 .error_message {
-  font-size: 1.5rem;
+  font-size: clamp(1.05rem, 4.6vw, 1.5rem);
   margin-bottom: 1rem;
   color: var(--text-h);
 }
@@ -61,4 +63,17 @@
 
 .btn_home:active {
   transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+  .brand_name {
+    letter-spacing: 1.2px;
+    font-size: 0.78rem;
+  }
+
+  .btn_home {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    box-sizing: border-box;
+  }
 }
