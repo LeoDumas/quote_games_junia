@@ -1,4 +1,6 @@
 
+import "./NotFound.css";
+
 const NotFound = () => {
   return (
     <main className="main_not_found">
