@@ -14,7 +14,7 @@ function Button({h,w,Answer,txt,link = ""}){
         style = {{
             height: h,
             width : w,
-            fontSize: h*0.8,
+            fontSize: h*0.4,
             lineHeight : '${h}px'
         }}>
         {txt}</button>
@@ -22,3 +22,4 @@ function Button({h,w,Answer,txt,link = ""}){
 
 }
 
+export default Button;

@@ -5,11 +5,41 @@
 
 .topnav-inner {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    justify-content: space-between;
     padding: 16px;
+    background-color: #3A4042;
 }
 
 div[data-reverse='true'] nav {
     display: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+li {
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+
+
+.logo {
+    background-color: white;
+    border-radius: 100%;
+    padding: 8px 6px 6px;
+
+}
+
+div[data-reverse='false'] #topnav_responsive_menu {
+    display: flex;
+    position: absolute;
+    background-color: #3A4042;
+    justify-content: left;
+    right: 0;
+    padding: 0 10px 0 10px;
 }
