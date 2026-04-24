@@ -1,7 +1,7 @@
 import {createBrowserRouter} from "react-router-dom";
 import App from "../App";
-import FlashGame from "../pages/FlashGame/FlashGame";
 import Home from "../pages/Home/Home";
+import TypeGame from "../pages/TypeGame/TypeGame";
 import NotFound from "../pages/NotFound/NotFound";
 import ExpressGame from "../pages/ExpressGame/ExpressGame";
 
