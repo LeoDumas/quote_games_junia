@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import FlashGame from "../pages/FlashGame/FlashGame";
 import Home from "../pages/Home/Home";
+import TypeGame from "../pages/TypeGame/TypeGame";
 import NotFound from "../pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/game",
-        element: <FlashGame />,
+        element: <TypeGame />,
       },
     ],
   },
