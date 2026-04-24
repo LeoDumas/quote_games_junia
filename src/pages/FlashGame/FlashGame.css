@@ -2,9 +2,9 @@
 
 .game_container {
     width: 100%;
-    margin-top: 5%;
     min-height: 100svh;
     display: flex;
+    margin-top: 3%;
     justify-content: center;
     padding: clamp(12px, 2.4vh, 26px) 0 clamp(98px, 15vh, 140px);
     box-sizing: border-box;
@@ -218,7 +218,7 @@
     }
 
     .game_quote_wrap {
-        margin-top: 10%;
+        padding-top: 10%;
     }
 
     .game_answer_key {
