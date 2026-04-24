@@ -31,7 +31,7 @@ function Navbar() {
                 <ul>
                     <li><Link to="/"><Button h={50} w={200} txt={"Home"}/></Link></li>
                     <li><Link to="/game"><Button h={50} w={200} txt={"Flash citation"}/></Link></li>
-                    <li><Link to="/saisie-agile"><Button h={50} w={200} txt={"Saisie agile"}/></Link></li>
+                    <li><Link to="/typing"><Button h={50} w={200} txt={"Saisie agile"}/></Link></li>
                     <li><Link to="/express"><Button h={50} w={200} txt={"Verdict expess"}/></Link></li>
                     <li><Link to="/compte"><Button h={50} w={200} txt={"Compte"}/></Link></li>
                 </ul>
