@@ -43,3 +43,9 @@ div[data-reverse='false'] #topnav_responsive_menu {
     right: 0;
     padding: 0 10px 0 10px;
 }
+
+#topnav {
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+}

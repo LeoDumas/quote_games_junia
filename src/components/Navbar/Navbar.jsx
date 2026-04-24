@@ -30,7 +30,7 @@ function Navbar() {
             <nav role="navigation" id="topnav_responsive_menu">
                 <ul>
                     <li><a href="/"><Button h={50} w={200} txt={"Home"}/></a></li>
-                    <li><a href="/flash-citation"><Button h={50} w={200} txt={"Flash citation"}/></a></li>
+                    <li><a href="/game"><Button h={50} w={200} txt={"Flash citation"}/></a></li>
                     <li><a href="/saisie-agile"><Button h={50} w={200} txt={"Saisie agile"}/></a></li>
                     <li><a href="/verdict-express"><Button h={50} w={200} txt={"Verdict expess"}/></a></li>
                     <li><a href="/compte"><Button h={50} w={200} txt={"Compte"}/></a></li>
