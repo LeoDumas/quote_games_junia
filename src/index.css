@@ -25,7 +25,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #1f1f1f;
-
+    background-image:  url("https://64.media.tumblr.com/a2726b4b027405abb9fcc760bd7f34df/12b7583f3577fc35-58/s1280x1920/d72622748a865bffeb44780f9a1927c05acb193f.pnj");
+    background-attachment: fixed;
+    background-size: cover;
     @media (max-width: 1024px) {
         font-size: 16px;
     }
