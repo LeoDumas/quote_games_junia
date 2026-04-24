@@ -2,6 +2,7 @@
 
 .game_container {
     width: 100%;
+    margin-top: 5%;
     min-height: 100svh;
     display: flex;
     justify-content: center;
@@ -182,6 +183,7 @@
 
 @media (max-width: 700px) {
     .game_container {
+        margin-top: 20%;
         padding-top: 10px;
         padding-bottom: clamp(110px, 17vh, 140px);
     }
@@ -213,6 +215,10 @@
     .game_answer_button {
         min-height: 52px;
         font-size: clamp(1rem, 5.2vw, 1.35rem);
+    }
+
+    .game_quote_wrap {
+        margin-top: 10%;
     }
 
     .game_answer_key {
