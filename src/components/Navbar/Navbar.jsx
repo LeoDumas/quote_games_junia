@@ -4,7 +4,7 @@ import burger from "../../assets/burger-menu-svgrepo-com.svg";
 import {useState} from "react";
 import Button from "../ButtonAssets/Button.jsx";
 import logo from "../../assets/logo.svg";
-
+import { Link } from "react-router-dom";
 
 function Navbar() {
 
@@ -14,9 +14,9 @@ function Navbar() {
 
         <div id="topnav" className="topnav" data-reverse={isMenuOpen}>
             <div className="topnav-inner">
-                <a href="/">
+                <Link to="/">
                     <div className="logo"><img id="logo" src={logo} alt="logo"/></div>
-                </a>
+                </Link>
 
                 <a id="topnav_hamburger_icon_link" onClick={() => {
                     isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true);
@@ -29,11 +29,11 @@ function Navbar() {
 
             <nav role="navigation" id="topnav_responsive_menu">
                 <ul>
-                    <li><a href="/"><Button h={50} w={200} txt={"Home"}/></a></li>
-                    <li><a href="/game"><Button h={50} w={200} txt={"Flash citation"}/></a></li>
-                    <li><a href="/saisie-agile"><Button h={50} w={200} txt={"Saisie agile"}/></a></li>
-                    <li><a href="/verdict-express"><Button h={50} w={200} txt={"Verdict expess"}/></a></li>
-                    <li><a href="/compte"><Button h={50} w={200} txt={"Compte"}/></a></li>
+                    <li><Link to="/"><Button h={50} w={200} txt={"Home"}/></Link></li>
+                    <li><Link to="/game"><Button h={50} w={200} txt={"Flash citation"}/></Link></li>
+                    <li><Link to="/saisie-agile"><Button h={50} w={200} txt={"Saisie agile"}/></Link></li>
+                    <li><Link to="/verdict-express"><Button h={50} w={200} txt={"Verdict expess"}/></Link></li>
+                    <li><Link to="/compte"><Button h={50} w={200} txt={"Compte"}/></Link></li>
                 </ul>
             </nav>
         </div>
