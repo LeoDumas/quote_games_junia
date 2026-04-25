@@ -5,7 +5,7 @@
 	min-height: 100svh;
 	display: flex;
 	justify-content: center;
-    margin-top: 5%;
+    margin-top: 4%;
 	padding: clamp(12px, 2.2vh, 26px) 0 clamp(90px, 14vh, 130px);
 	box-sizing: border-box;
 	background: radial-gradient(circle at 50% -10%, #232428 0%, #1c1c1f 45%, #18181b 100%);

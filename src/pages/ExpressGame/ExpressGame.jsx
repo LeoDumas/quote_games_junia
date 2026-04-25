@@ -204,7 +204,7 @@ function ExpressGame() {
 
                 <div className={`game_quote_wrap game_quote_wrap--${roundFeedback}`}>
                     <QuoteBox text={round.quote} />
-                    <p className="game_shown_author">— {round.shownAuthor}</p>
+                    <h1 className="game_shown_author">Is it from <strong>{round.shownAuthor}</strong>?</h1>
                 </div>
 
                 {roundError && (
