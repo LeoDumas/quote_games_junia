@@ -5,6 +5,9 @@ import NotFound from "../pages/NotFound/NotFound";
 import ExpressGame from "../pages/ExpressGame/ExpressGame";
 import TypeGamePage from "../pages/TypeGame/TypeGame";
 import FlashGame from "../pages/FlashGame/FlashGame.jsx";
+import Login from "../pages/Login/Login.jsx";
+import Register from "../pages/Register/Register.jsx";
+import Account from "../pages/Account/Account.jsx";
 
 const router = createBrowserRouter([
     {
@@ -27,7 +30,19 @@ const router = createBrowserRouter([
             {
                 path: "/typing",
                 element: <TypeGamePage/>,
-            }
+            },
+            {
+                path: "/login",
+                element: <Login/>,
+            },
+            {
+                path: "/register",
+                element: <Register/>,
+            },
+            {
+                path: "/compte",
+                element: <Account/>,
+            },
         ],
     },
     {

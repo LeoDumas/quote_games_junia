@@ -1,0 +1,69 @@
+.modal_overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 16px;
+}
+
+.modal_card {
+    background: rgba(30, 30, 35, 0.98);
+    border: 1px solid rgba(170, 59, 255, 0.5);
+    border-radius: 12px;
+    padding: 32px 36px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 0 50px rgba(170, 59, 255, 0.25);
+    text-align: center;
+}
+
+.modal_title {
+    color: #aa3bff;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 6px;
+}
+
+.modal_score {
+    color: #4ebeff;
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 20px;
+}
+
+.modal_label {
+    display: block;
+    color: #aaa;
+    font-size: 13px;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.modal_input {
+    width: 100%;
+    padding: 11px 14px;
+    background: #111;
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 15px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+}
+
+.modal_input:focus {
+    outline: none;
+    border-color: #aa3bff;
+    box-shadow: 0 0 8px rgba(170, 59, 255, 0.3);
+}
+
+.modal_actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}

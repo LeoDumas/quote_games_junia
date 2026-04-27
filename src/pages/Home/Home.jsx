@@ -8,10 +8,10 @@ import { loadLeaderboard } from "../../resources/leaderboard/leaderboard";
 
 function Home() {
   const navigate = useNavigate();
-  const [historyEntries, setHistoryEntries] = useState(() => loadLeaderboard());
+  const [historyEntries, setHistoryEntries] = useState([]);
 
   useEffect(() => {
-    const refresh = () => setHistoryEntries(loadLeaderboard());
+    const refresh = () => loadLeaderboard().then(setHistoryEntries);
 
     refresh();
     window.addEventListener("focus", refresh);

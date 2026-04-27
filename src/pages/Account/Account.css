@@ -1,0 +1,298 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+
+.account_page {
+    width: 100%;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(80px, 12vh, 110px) clamp(14px, 3vw, 24px) clamp(40px, 8vh, 80px);
+    box-sizing: border-box;
+    background: radial-gradient(circle at 50% -10%, #232428 0%, #1c1c1f 45%, #18181b 100%);
+    gap: 16px;
+}
+
+.account_profile_card,
+.account_section_card {
+    background: rgba(40, 40, 40, 0.72);
+    border: 1px solid rgba(78, 190, 255, 0.35);
+    border-radius: 10px;
+    padding: clamp(18px, 3vh, 28px) clamp(18px, 3vw, 28px);
+    width: 100%;
+    max-width: 540px;
+    box-shadow: 0 0 24px rgba(78, 190, 255, 0.07);
+    box-sizing: border-box;
+}
+
+.account_profile_inner {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.account_avatar {
+    flex-shrink: 0;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #2a2a30;
+    border: 2px solid rgba(78, 190, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.account_avatar svg {
+    width: 64px;
+    height: 64px;
+}
+
+.account_profile_info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+}
+
+.account_field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.account_field_label {
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #777;
+}
+
+.account_field_value {
+    font-size: 13px;
+    color: #ddd;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.account_pencil_btn {
+    background: none;
+    border: none;
+    padding: 2px;
+    cursor: pointer;
+    color: #4ebeff;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    transition: color 0.15s, filter 0.15s;
+}
+
+.account_pencil_btn:hover {
+    color: #8fd8ff;
+    filter: drop-shadow(0 0 4px rgba(78, 190, 255, 0.5));
+}
+
+.pencil_icon {
+    width: 13px;
+    height: 13px;
+}
+
+.account_inline_form {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.account_inline_input {
+    flex: 1;
+    padding: 5px 10px;
+    background: #1c1c1f;
+    border: 1px solid #4ebeff;
+    border-radius: 6px;
+    color: #f0f0f0;
+    font-size: 13px;
+    min-width: 0;
+    transition: box-shadow 0.2s;
+}
+
+.account_inline_input:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(78, 190, 255, 0.35);
+}
+
+.account_inline_save,
+.account_inline_cancel {
+    background: rgba(40, 40, 40, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 5px;
+    color: #bbb;
+    font-family: "Orbitron", sans-serif;
+    font-size: 11px;
+    padding: 4px 9px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.account_inline_save:hover {
+    border-color: #19e36f;
+    color: #19e36f;
+}
+
+.account_inline_cancel:hover {
+    border-color: #ff1f77;
+    color: #ff7aa8;
+}
+
+.account_field_error {
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.04em;
+    color: #ff7aa8;
+    margin-top: 2px;
+}
+
+.account_section_title {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(0.95rem, 2.2vw, 1.2rem);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: #f0f0f0;
+    text-align: center;
+    margin: 0 0 16px;
+}
+
+.account_scores_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.account_score_row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.account_score_row:first-child { padding-top: 0; }
+.account_score_row:last-child  { border-bottom: none; padding-bottom: 0; }
+
+.account_star {
+    color: #d2ff39;
+    font-size: 18px;
+    flex-shrink: 0;
+    line-height: 1;
+    filter: drop-shadow(0 0 4px rgba(210, 255, 57, 0.5));
+}
+
+.account_score_label {
+    flex: 1;
+    font-family: "Orbitron", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #ccc;
+}
+
+.account_score_pts {
+    font-family: "Orbitron", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #4ebeff;
+    text-shadow: 0 0 10px rgba(78, 190, 255, 0.4);
+}
+
+.account_placeholder {
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: #555;
+    text-align: center;
+    padding: 6px 0;
+    margin: 0;
+}
+
+.account_games_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 540px;
+}
+
+.account_game_tile {
+    background: linear-gradient(180deg, #3d3d3d 0%, #303030 100%);
+    border: 2px solid rgba(78, 190, 255, 0.35);
+    border-radius: 10px;
+    padding: 26px 8px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: box-shadow 170ms ease, filter 170ms ease, transform 170ms ease;
+    box-shadow: 0 0 14px rgba(78, 190, 255, 0.18);
+}
+
+.account_game_tile:hover {
+    box-shadow: 0 0 18px rgba(78, 190, 255, 0.45), 0 0 40px rgba(78, 190, 255, 0.28);
+    filter: brightness(1.07);
+    transform: translateY(-1px);
+}
+
+.account_game_emoji {
+    font-size: 26px;
+    line-height: 1;
+}
+
+.account_game_label {
+    font-family: "Orbitron", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ccc;
+}
+
+.account_logout_link {
+    background: none;
+    border: none;
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #555;
+    cursor: pointer;
+    padding: 8px 16px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s;
+    margin-top: 4px;
+}
+
+.account_logout_link:hover {
+    color: #ff7aa8;
+}
+
+@media (max-width: 480px) {
+    .account_profile_card,
+    .account_section_card {
+        padding: 18px 16px;
+    }
+
+    .account_avatar {
+        width: 58px;
+        height: 58px;
+    }
+
+    .account_avatar svg {
+        width: 52px;
+        height: 52px;
+    }
+}

@@ -1,6 +1,7 @@
 #burger_icon {
     cursor: pointer;
     width: 30px;
+    filter: invert(100%);
 }
 
 .topnav-inner {

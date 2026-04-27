@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+
+.auth_container {
+    width: 100%;
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(80px, 12vh, 120px) 16px clamp(40px, 6vh, 80px);
+    box-sizing: border-box;
+    background: radial-gradient(circle at 50% -10%, #232428 0%, #1c1c1f 45%, #18181b 100%);
+}
+
+.auth_card {
+    background: rgba(40, 40, 40, 0.72);
+    border: 1px solid rgba(78, 190, 255, 0.35);
+    border-radius: 10px;
+    padding: clamp(28px, 5vh, 44px) clamp(24px, 5vw, 48px);
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 0 32px rgba(78, 190, 255, 0.08);
+}
+
+.auth_title {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: #f0f0f0;
+    text-align: center;
+    margin: 0 0 clamp(20px, 4vh, 32px);
+}
+
+.auth_field {
+    margin-bottom: 18px;
+}
+
+.auth_label {
+    display: block;
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 7px;
+}
+
+.auth_input {
+    width: 100%;
+    padding: 11px 14px;
+    background: #1c1c1f;
+    border: 1px solid rgba(78, 190, 255, 0.22);
+    border-radius: 8px;
+    color: #f0f0f0;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+.auth_input:focus {
+    outline: none;
+    border-color: #4ebeff;
+    box-shadow: 0 0 10px rgba(78, 190, 255, 0.28);
+}
+
+.auth_error {
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: #ff7aa8;
+    text-align: center;
+    background: rgba(255, 31, 119, 0.08);
+    border: 1px solid rgba(255, 31, 119, 0.28);
+    border-radius: 6px;
+    padding: 9px 12px;
+    margin-bottom: 16px;
+}
+
+.auth_submit {
+    width: 100%;
+    margin-top: 6px;
+}
+
+.auth_footer {
+    font-family: "Orbitron", sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: #777;
+    text-align: center;
+    margin-top: 22px;
+}
+
+.auth_link {
+    color: #4ebeff;
+    text-decoration: none;
+}
+
+.auth_link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+    .auth_card {
+        padding: 24px 18px;
+    }
+}

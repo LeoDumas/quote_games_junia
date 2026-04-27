@@ -1,18 +1,35 @@
 import './Navbar.css';
 
 import burger from "../../assets/burger-menu-svgrepo-com.svg";
-import {useState} from "react";
+import {useState, useEffect, useRef} from "react";
 import Button from "../ButtonAssets/Button.jsx";
 import logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext.jsx";
+import { supabase, isSupabaseConfigured } from "../../utils/supabase.js";
 
 function Navbar() {
-
     let [isMenuOpen, setIsMenuOpen] = useState(true);
+    const { user } = useAuth();
+    const navRef = useRef(null);
+
+    useEffect(() => {
+        function handleClickOutside(e) {
+            if (!isMenuOpen && navRef.current && !navRef.current.contains(e.target)) {
+                setIsMenuOpen(true);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [isMenuOpen]);
+
+    async function handleLogout() {
+        if (isSupabaseConfigured) await supabase.auth.signOut();
+        setIsMenuOpen(true);
+    }
 
     return (
-
-        <div id="topnav" className="topnav" data-reverse={isMenuOpen}>
+        <div id="topnav" className="topnav" data-reverse={isMenuOpen} ref={navRef}>
             <div className="topnav-inner">
                 <Link to="/">
                     <div className="logo"><img id="logo" src={logo} alt="logo"/></div>
@@ -33,7 +50,18 @@ function Navbar() {
                     <li><Link to="/game"><Button h={50} w={200} txt={"Flash citation"}/></Link></li>
                     <li><Link to="/typing"><Button h={50} w={200} txt={"Saisie agile"}/></Link></li>
                     <li><Link to="/express"><Button h={50} w={200} txt={"Verdict expess"}/></Link></li>
-                    <li><Link to="/compte"><Button h={50} w={200} txt={"Compte"}/></Link></li>
+
+                    {user ? (
+                        <>
+                            <li><Link to="/compte"><Button h={50} w={200} txt={"Mon compte"}/></Link></li>
+                            <li><Button h={50} w={200} variant="red" txt={"Déconnexion"} onClick={handleLogout}/></li>
+                        </>
+                    ) : (
+                        <>
+                            <li><Link to="/login"><Button h={50} w={200} txt={"Connexion"}/></Link></li>
+                            <li><Link to="/register"><Button h={50} w={200} variant="green" txt={"Inscription"}/></Link></li>
+                        </>
+                    )}
                 </ul>
             </nav>
         </div>

@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Button from "../../components/ButtonAssets/Button";
+import GameHud from "../../components/GameUI/GameHud";
+import GameTimerBar from "../../components/GameUI/GameTimerBar";
 import HistoryBoard from "../../components/HistoryBoard/HistoryBoard";
 import QuoteBox from "../../components/QuoteBox/QuoteBox";
+import useSyncedRef from "../../hooks/useSyncedRef";
 import {
     loadLeaderboard,
     pushLeaderboardScore,
@@ -11,6 +14,8 @@ import {
     fetchRandomQuote,
     getRandomAuthorChoices,
 } from "../../utils/quoteApi";
+import { useAuth } from "../../contexts/AuthContext";
+import { Link } from "react-router-dom";
 import "./ExpressGame.css";
 
 const ROUND_TIME = 15;
@@ -37,10 +42,10 @@ function buildRound(quote, author) {
 
 function ExpressGame() {
     const language = useMemo(() => detectLanguage(), []);
-    const leaderboardEntries = useMemo(() => loadLeaderboard(), []);
+    const { user } = useAuth();
 
     const [round, setRound] = useState(() => buildRound("Loading quote...", "Unknown"));
-    const [historyEntries, setHistoryEntries] = useState(leaderboardEntries);
+    const [historyEntries, setHistoryEntries] = useState([]);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [roundFeedback, setRoundFeedback] = useState("idle");
     const [score, setScore] = useState(0);
@@ -52,15 +57,8 @@ function ExpressGame() {
     const [timeLeft, setTimeLeft] = useState(ROUND_TIME);
     const answerLockedRef = useRef(false);
 
-    const scoreRef = useRef(score);
-    useEffect(() => {
-        scoreRef.current = score;
-    }, [score]);
-
-    const streakRef = useRef(streak);
-    useEffect(() => {
-        streakRef.current = streak;
-    }, [streak]);
+    const scoreRef = useSyncedRef(score);
+    const streakRef = useSyncedRef(streak);
 
     const loadRound = useCallback(async () => {
         answerLockedRef.current = false;
@@ -82,6 +80,10 @@ function ExpressGame() {
     }, [loadRound]);
 
     useEffect(() => {
+        loadLeaderboard().then(setHistoryEntries);
+    }, []);
+
+    useEffect(() => {
         if (isLoadingRound || selectedAnswer !== null) return;
 
         setTimeLeft(ROUND_TIME);
@@ -92,9 +94,14 @@ function ExpressGame() {
         return () => clearInterval(id);
     }, [isLoadingRound, round, selectedAnswer]);
 
+    const userRef = useSyncedRef(user);
+
     const saveScore = useCallback(() => {
-        if (scoreRef.current > 0) {
-            setHistoryEntries(pushLeaderboardScore({ name: "Player", score: scoreRef.current }));
+        if (scoreRef.current <= 0) return;
+        if (userRef.current) {
+            const displayName = userRef.current.user_metadata?.username ?? "Player";
+            pushLeaderboardScore({ name: displayName, score: scoreRef.current, userId: userRef.current.id, gameType: 'express' })
+                .then(setHistoryEntries);
         }
     }, []);
 
@@ -178,7 +185,6 @@ function ExpressGame() {
         return "blue";
     };
 
-    const timerPct = (timeLeft / ROUND_TIME) * 100;
     const isTimeout = selectedAnswer === "__timeout__";
     const isCorrect = selectedAnswer === round.correctAnswer;
     const isWrong = selectedAnswer !== null && !isCorrect && !isTimeout;
@@ -186,20 +192,18 @@ function ExpressGame() {
     return (
         <main className="game_container">
             <section className="game_content">
-                <section className="game_hud" aria-label="Current score and streak">
-                    <p>Score: {score}</p>
-                    <p>Streak: {streak}</p>
-                    <p>Best: {bestStreak}</p>
-                </section>
+                <GameHud
+                    className="game_hud"
+                    score={score}
+                    streak={streak}
+                    thirdLabel={`Best: ${bestStreak}`}
+                />
 
-                <div
-                    className={`game_timer_bar${timeLeft <= 5 ? " game_timer_bar--urgent" : ""}${selectedAnswer !== null || isLoadingRound ? " game_timer_bar--hidden" : ""}`}
-                    style={{ "--pct": `${timerPct}%` }}
-                    role="progressbar"
-                    aria-valuenow={timeLeft}
-                    aria-valuemin={0}
-                    aria-valuemax={ROUND_TIME}
-                    aria-label={`${timeLeft} seconds remaining`}
+                <GameTimerBar
+                    baseClassName="game_timer_bar"
+                    timeLeft={timeLeft}
+                    roundTime={ROUND_TIME}
+                    isHidden={selectedAnswer !== null || isLoadingRound}
                 />
 
                 <div className={`game_quote_wrap game_quote_wrap--${roundFeedback}`}>
@@ -229,16 +233,16 @@ function ExpressGame() {
                 </section>
 
                 {isCorrect && (
-                    <p className="game_feedback game_feedback--good">Correct! +{lastGain}</p>
+                    <p className="game_feedback game_feedback--good">Correct ! +{lastGain}</p>
                 )}
                 {isTimeout && (
                     <p className="game_feedback game_feedback--bad">
-                        Time&apos;s up! Score saved to leaderboard.
+                        Temps écoulé !{user ? " Score ajouté au classement." : <> <Link to="/login" className="game_login_hint">Connectez-vous</Link> pour sauvegarder.</>}
                     </p>
                 )}
                 {isWrong && (
                     <p className="game_feedback game_feedback--bad">
-                        Wrong answer. Score saved to leaderboard.
+                        Mauvaise réponse !{user ? " Score ajouté au classement." : <> <Link to="/login" className="game_login_hint">Connectez-vous</Link> pour sauvegarder.</>}
                     </p>
                 )}
 
@@ -248,10 +252,8 @@ function ExpressGame() {
                         variant="blue"
                         onClick={handleNextRound}
                     >
-                        Next quote
-                        <span className="game_next_enter" aria-hidden="true">
-              ↵
-            </span>
+                        Citation suivante
+                        <span className="game_next_enter" aria-hidden="true">↵</span>
                     </Button>
                 )}
             </section>

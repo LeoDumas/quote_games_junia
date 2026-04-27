@@ -37,7 +37,6 @@
     font-size: clamp(0.78rem, 1.4vw, 1rem);
 }
 
-/* Timer bar */
 .game_timer_bar {
     width: min(92%, 760px);
     height: 5px;
@@ -231,4 +230,9 @@
 h1 {
     color: white;
     font-family: "Orbitron", sans-serif;
+}
+.game_login_hint {
+    color: #4ebeff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }

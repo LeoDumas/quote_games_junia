@@ -1,13 +1,18 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Button from "../ButtonAssets/Button";
+import GameHud from "../GameUI/GameHud";
+import GameTimerBar from "../GameUI/GameTimerBar";
 import HistoryBoard from "../HistoryBoard/HistoryBoard";
 import QuoteBox from "../QuoteBox/QuoteBox";
+import useSyncedRef from "../../hooks/useSyncedRef";
 import {
   loadLeaderboard,
   pushLeaderboardScore,
 } from "../../resources/leaderboard/leaderboard";
 import { detectLanguage, fetchRandomQuote } from "../../utils/quoteApi";
 import people from "../../resources/data/people.json";
+import { useAuth } from "../../contexts/AuthContext";
+import { Link } from "react-router-dom";
 import "./TypeGame.css";
 
 const ROUND_TIME = 20;
@@ -38,11 +43,11 @@ function highlightMatch(name, query) {
 
 function TypeGame() {
   const language = useMemo(() => detectLanguage(), []);
-  const leaderboardEntries = useMemo(() => loadLeaderboard(), []);
+  const { user } = useAuth();
 
   const [quote, setQuote] = useState("Loading quote...");
   const [correctAnswer, setCorrectAnswer] = useState("Unknown");
-  const [historyEntries, setHistoryEntries] = useState(leaderboardEntries);
+  const [historyEntries, setHistoryEntries] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
@@ -59,11 +64,8 @@ function TypeGame() {
   const answerLockedRef = useRef(false);
   const inputRef = useRef(null);
 
-  const scoreRef = useRef(score);
-  useEffect(() => { scoreRef.current = score; }, [score]);
-
-  const streakRef = useRef(streak);
-  useEffect(() => { streakRef.current = streak; }, [streak]);
+  const scoreRef = useSyncedRef(score);
+  const streakRef = useSyncedRef(streak);
 
   const loadRound = useCallback(async () => {
     answerLockedRef.current = false;
@@ -92,7 +94,10 @@ function TypeGame() {
     void loadRound();
   }, [loadRound]);
 
-  // Countdown timer resets on each new round
+  useEffect(() => {
+    loadLeaderboard().then(setHistoryEntries);
+  }, []);
+
   useEffect(() => {
     if (isLoadingRound || submittedAnswer !== null) return;
     setTimeLeft(ROUND_TIME);
@@ -102,18 +107,20 @@ function TypeGame() {
     return () => clearInterval(id);
   }, [isLoadingRound, quote, submittedAnswer]);
 
-  // Auto-focus input on each new round
   useEffect(() => {
     if (!isLoadingRound && submittedAnswer === null) {
       inputRef.current?.focus();
     }
   }, [isLoadingRound, submittedAnswer]);
 
+  const userRef = useSyncedRef(user);
+
   const saveScore = useCallback(() => {
-    if (scoreRef.current > 0) {
-      setHistoryEntries(
-        pushLeaderboardScore({ name: "Player", score: scoreRef.current })
-      );
+    if (scoreRef.current <= 0) return;
+    if (userRef.current) {
+      const displayName = userRef.current.user_metadata?.username ?? "Player";
+      pushLeaderboardScore({ name: displayName, score: scoreRef.current, userId: userRef.current.id, gameType: 'typing' })
+        .then(setHistoryEntries);
     }
   }, []);
 
@@ -144,7 +151,6 @@ function TypeGame() {
     [submittedAnswer, isLoadingRound, correctAnswer, saveScore]
   );
 
-  // Auto-wrong when timer hits 0
   useEffect(() => {
     if (timeLeft === 0 && submittedAnswer === null && !isLoadingRound) {
       if (answerLockedRef.current) return;
@@ -166,7 +172,6 @@ function TypeGame() {
     await loadRound();
   }, [roundFeedback, loadRound]);
 
-  // Enter/Space to advance after answer (when focus is outside the input)
   useEffect(() => {
     const onKey = (e) => {
       if (e.target instanceof HTMLInputElement) return;
@@ -222,7 +227,6 @@ function TypeGame() {
     }
   };
 
-  const timerPct = (timeLeft / ROUND_TIME) * 100;
   const isTimeout = submittedAnswer === "__timeout__";
   const isCorrect = roundFeedback === "correct";
   const isWrong = roundFeedback === "wrong";
@@ -236,22 +240,18 @@ function TypeGame() {
   return (
     <main className="tg_container">
       <section className="tg_content">
-        <section className="tg_hud" aria-label="Current score and streak">
-          <p>Score: {score}</p>
-          <p>Streak: {streak}</p>
-          <p>Best: {bestStreak}</p>
-        </section>
+        <GameHud
+          className="tg_hud"
+          score={score}
+          streak={streak}
+          thirdLabel={`Best: ${bestStreak}`}
+        />
 
-        <div
-          className={`tg_timer_bar${timeLeft <= 5 ? " tg_timer_bar--urgent" : ""}${
-            submittedAnswer !== null || isLoadingRound ? " tg_timer_bar--hidden" : ""
-          }`}
-          style={{ "--pct": `${timerPct}%` }}
-          role="progressbar"
-          aria-valuenow={timeLeft}
-          aria-valuemin={0}
-          aria-valuemax={ROUND_TIME}
-          aria-label={`${timeLeft} seconds remaining`}
+        <GameTimerBar
+          baseClassName="tg_timer_bar"
+          timeLeft={timeLeft}
+          roundTime={ROUND_TIME}
+          isHidden={submittedAnswer !== null || isLoadingRound}
         />
 
         <div className={`tg_quote_wrap tg_quote_wrap--${roundFeedback}`}>
@@ -326,12 +326,12 @@ function TypeGame() {
         )}
         {isTimeout && (
           <p className="tg_feedback tg_feedback--bad">
-            Time&apos;s up! It was <strong>{correctAnswer}</strong>. Score saved.
+            Temps écoulé ! C&apos;était <strong>{correctAnswer}</strong>.{user ? " Score ajouté au classement." : <> <Link to="/login" className="tg_login_hint">Connectez-vous</Link> pour sauvegarder.</>}
           </p>
         )}
         {isWrong && !isTimeout && (
           <p className="tg_feedback tg_feedback--bad">
-            Wrong! It was <strong>{correctAnswer}</strong>. Score saved.
+            Mauvaise réponse ! C&apos;était <strong>{correctAnswer}</strong>.{user ? " Score ajouté au classement." : <> <Link to="/login" className="tg_login_hint">Connectez-vous</Link> pour sauvegarder.</>}
           </p>
         )}
 

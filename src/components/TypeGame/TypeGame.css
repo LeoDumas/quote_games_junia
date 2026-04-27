@@ -285,3 +285,9 @@
         width: 100%;
     }
 }
+
+.tg_login_hint {
+    color: #4ebeff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
