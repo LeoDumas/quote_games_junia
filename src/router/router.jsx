@@ -50,7 +50,6 @@ const router = createHashRouter([
         element: <NotFound/>,
     },
 ], {
-    // Uses Vite's base path so routing works in local dev and on GitHub Pages.
     basename: import.meta.env.BASE_URL,
 });
 

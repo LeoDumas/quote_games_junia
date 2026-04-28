@@ -2,11 +2,10 @@
 
 .tg_container {
     width: 100%;
-    margin-top: 5%;
     min-height: 100svh;
     display: flex;
     justify-content: center;
-    padding: clamp(12px, 2.4vh, 26px) 0 clamp(98px, 15vh, 140px);
+    padding: calc(var(--navbar-height) + clamp(12px, 2.4vh, 26px)) 0 clamp(98px, 15vh, 140px);
     box-sizing: border-box;
     background: radial-gradient(circle at 50% -10%, #232428 0%, #1c1c1f 45%, #18181b 100%);
 }
@@ -240,8 +239,7 @@
 
 @media (max-width: 700px) {
     .tg_container {
-        margin-top: 20%;
-        padding-top: 10px;
+        padding-top: calc(var(--navbar-height) + 10px);
         padding-bottom: clamp(110px, 17vh, 140px);
     }
 
@@ -278,11 +276,17 @@
     }
 
     .tg_suggestions {
-        max-height: 240px;
+        max-height: min(240px, 38vh);
+        overflow-y: auto;
     }
 
     .tg_next_button {
         width: 100%;
+    }
+
+    .tg_submit_button {
+        width: 100%;
+        min-width: unset;
     }
 }
 

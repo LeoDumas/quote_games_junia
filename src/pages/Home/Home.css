@@ -5,8 +5,7 @@
 	min-height: 100svh;
 	display: flex;
 	justify-content: center;
-    margin-top: 4%;
-	padding: clamp(12px, 2.2vh, 26px) 0 clamp(90px, 14vh, 130px);
+	padding: calc(var(--navbar-height) + clamp(12px, 2.2vh, 26px)) 0 clamp(90px, 14vh, 130px);
 	box-sizing: border-box;
 	background: radial-gradient(circle at 50% -10%, #232428 0%, #1c1c1f 45%, #18181b 100%);
 }
@@ -32,7 +31,7 @@
 
 .home_quote_wrap {
 	width: min(100%, 920px);
-    margin-top: 5%;
+	margin-top: clamp(12px, 3vh, 32px);
 }
 
 .home_quote_wrap .box_quote_container {
@@ -68,14 +67,13 @@
 
 @media (max-width: 700px) {
 	.home_container {
-		padding-top: 12px;
+		padding-top: calc(var(--navbar-height) + 12px);
 		padding-bottom: clamp(104px, 16vh, 132px);
-        margin-top: 20%;
 	}
 
-    .home_quote_wrap {
-        margin-top: 15%;
-    }
+	.home_quote_wrap {
+		margin-top: clamp(10px, 4vw, 24px);
+	}
 
 	.home_content {
 		width: min(96%, 430px);
@@ -117,7 +115,7 @@
 
 @media (max-width: 420px) {
 	.home_container {
-		padding-top: 8px;
+		padding-top: calc(var(--navbar-height) + 8px);
 		padding-bottom: 110px;
 	}
 

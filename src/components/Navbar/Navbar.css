@@ -1,52 +1,86 @@
-#burger_icon {
-    cursor: pointer;
-    width: 30px;
-    filter: invert(100%);
+#topnav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 .topnav-inner {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 16px;
-    background-color: #3A4042;
+    background-color: #3a4042;
 }
-
-div[data-reverse='true'] nav {
-    display: none;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-}
-
-li {
-    margin-top: 2px;
-    margin-bottom: 10px;
-}
-
 
 .logo {
     background-color: white;
     border-radius: 100%;
     padding: 8px 6px 6px;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
-div[data-reverse='false'] #topnav_responsive_menu {
+#topnav_hamburger_icon_link {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+}
+
+#burger_icon {
+    width: 30px;
+    filter: invert(100%);
+    display: block;
+}
+
+.topnav[data-reverse='true'] nav {
+    display: none;
+}
+
+.topnav[data-reverse='false'] #topnav_responsive_menu {
     display: flex;
     position: absolute;
-    background-color: #3A4042;
-    justify-content: left;
+    top: 100%;
     right: 0;
-    padding: 0 10px 0 10px;
+    background-color: #3a4042;
+    padding: 8px 10px 14px;
+    border-radius: 0 0 0 10px;
+    box-shadow: -4px 6px 20px rgba(0, 0, 0, 0.45);
+    min-width: 220px;
+    max-width: min(300px, 88vw);
+    max-height: calc(100svh - var(--navbar-height, 62px));
+    overflow-y: auto;
 }
 
-#topnav {
+#topnav_responsive_menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
     width: 100%;
-    position: fixed;
-    z-index: 1000;
+}
+
+#topnav_responsive_menu li {
+    width: 100%;
+    margin: 0;
+}
+
+.topnav__btn {
+    width: 100% !important;
+    height: 46px !important;
+    font-size: 0.82rem !important;
+    box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+    .topnav__btn {
+        height: 44px !important;
+        font-size: 0.78rem !important;
+    }
 }

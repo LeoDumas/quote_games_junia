@@ -46,20 +46,20 @@ function Navbar() {
 
             <nav role="navigation" id="topnav_responsive_menu">
                 <ul>
-                    <li><Link to="/"><Button h={50} w={200} txt={"Home"}/></Link></li>
-                    <li><Link to="/game"><Button h={50} w={200} txt={"Flash citation"}/></Link></li>
-                    <li><Link to="/typing"><Button h={50} w={200} txt={"Saisie agile"}/></Link></li>
-                    <li><Link to="/express"><Button h={50} w={200} txt={"Verdict expess"}/></Link></li>
+                    <li><Link to="/"><Button className="topnav__btn" txt={"Home"}/></Link></li>
+                    <li><Link to="/game"><Button className="topnav__btn" txt={"Flash citation"}/></Link></li>
+                    <li><Link to="/typing"><Button className="topnav__btn" txt={"Saisie agile"}/></Link></li>
+                    <li><Link to="/express"><Button className="topnav__btn" txt={"Verdict expess"}/></Link></li>
 
                     {user ? (
                         <>
-                            <li><Link to="/compte"><Button h={50} w={200} txt={"Mon compte"}/></Link></li>
-                            <li><Button h={50} w={200} variant="red" txt={"Déconnexion"} onClick={handleLogout}/></li>
+                            <li><Link to="/compte"><Button className="topnav__btn" txt={"Mon compte"}/></Link></li>
+                            <li><Button className="topnav__btn" variant="red" txt={"Déconnexion"} onClick={handleLogout}/></li>
                         </>
                     ) : (
                         <>
-                            <li><Link to="/login"><Button h={50} w={200} txt={"Connexion"}/></Link></li>
-                            <li><Link to="/register"><Button h={50} w={200} variant="green" txt={"Inscription"}/></Link></li>
+                            <li><Link to="/login"><Button className="topnav__btn" txt={"Connexion"}/></Link></li>
+                            <li><Link to="/register"><Button className="topnav__btn" variant="green" txt={"Inscription"}/></Link></li>
                         </>
                     )}
                 </ul>

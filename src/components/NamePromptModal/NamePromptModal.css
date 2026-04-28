@@ -13,7 +13,7 @@
     background: rgba(30, 30, 35, 0.98);
     border: 1px solid rgba(170, 59, 255, 0.5);
     border-radius: 12px;
-    padding: 32px 36px;
+    padding: clamp(20px, 5vw, 32px) clamp(18px, 6vw, 36px);
     width: 100%;
     max-width: 380px;
     box-shadow: 0 0 50px rgba(170, 59, 255, 0.25);
@@ -22,7 +22,7 @@
 
 .modal_title {
     color: #aa3bff;
-    font-size: 20px;
+    font-size: clamp(16px, 4.5vw, 20px);
     font-weight: 600;
     margin: 0 0 6px;
 }
@@ -30,7 +30,7 @@
 .modal_score {
     color: #4ebeff;
     font-family: ui-monospace, Consolas, monospace;
-    font-size: 28px;
+    font-size: clamp(22px, 6vw, 28px);
     font-weight: 700;
     margin: 0 0 20px;
 }

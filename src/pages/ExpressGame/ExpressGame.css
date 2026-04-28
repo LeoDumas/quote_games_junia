@@ -4,9 +4,8 @@
     width: 100%;
     min-height: 100svh;
     display: flex;
-    margin-top: 3%;
     justify-content: center;
-    padding: clamp(12px, 2.4vh, 26px) 0 clamp(98px, 15vh, 140px);
+    padding: calc(var(--navbar-height) + clamp(12px, 2.4vh, 26px)) 0 clamp(98px, 15vh, 140px);
     box-sizing: border-box;
     background: radial-gradient(circle at 50% -10%, #232428 0%, #1c1c1f 45%, #18181b 100%);
 }
@@ -180,10 +179,19 @@
     }
 }
 
+@media (max-width: 768px) {
+    .game_answers {
+        gap: clamp(8px, 1.5vw, 16px);
+    }
+
+    .game_answer_button {
+        font-size: clamp(0.9rem, 2.8vw, 1.4rem);
+    }
+}
+
 @media (max-width: 700px) {
     .game_container {
-        margin-top: 20%;
-        padding-top: 10px;
+        padding-top: calc(var(--navbar-height) + 10px);
         padding-bottom: clamp(110px, 17vh, 140px);
     }
 
@@ -217,7 +225,7 @@
     }
 
     .game_quote_wrap {
-        padding-top: 10%;
+        padding-top: 0;
     }
 
     .game_answer_key {
@@ -227,7 +235,7 @@
     }
 }
 
-h1 {
+.game_container h1 {
     color: white;
     font-family: "Orbitron", sans-serif;
 }
